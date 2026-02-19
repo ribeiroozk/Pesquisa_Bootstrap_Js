@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Trabalho JS - Carros</title>
+  <style>
+    /* Estilo básico apenas para organizar os cards */
+    body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+    #container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+    .card { background: white; border: 2px solid #cc0000; padding: 10px; width: 150px; border-radius: 8px; }
+    .card img { width: 100%; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>Personagens de Carros</h1>
+  <button onclick="buscar()">Ver Personagens</button>
+  
+  <div id="container"></div>
+
+  <script>
+    function buscar() {
+      const lista = document.getElementById("container");
+
+      // 1. Fazendo a requisição
+      fetch("https://raw.githubusercontent.com/MarcosVini99/fake-api-cars/main/carros.json")
+        .then(resposta => {
+          // 2. Verificando se deu erro
+          if (!resposta.ok) {
+            throw new Error("Erro ao carregar dados");
+          }
+          return resposta.json(); // Converte para JSON
+        })
+        .then(dados => {
+          lista.innerHTML = ""; // Limpa a tela
+
+          // 3. Pegando apenas os 5 primeiros e exibindo
+          const apenas5 = dados.slice(0, 5);
+          
+          apenas5.forEach(carro => {
+            const div = document.createElement("div");
+            div.className = "card";
+            
+            // Montando o HTML do card
+            div.innerHTML = `
+              <img src="${carro.imagem}">
+              <h3>${carro.nome}</h3>
+              <p>${carro.modelo}</p>
+            `;
+            
+            lista.appendChild(div);
+          });
+        })
+        .catch(erro => {
+          alert("Erro: " + erro.message);
+        });
+    }
+  </script>
+
+</body>
+</html>

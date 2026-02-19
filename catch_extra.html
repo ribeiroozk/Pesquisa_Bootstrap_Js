@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Rick and Morty Explorer</title>
+  <style>
+    /* Um pouco de CSS para os 30% de criatividade */
+    body { font-family: sans-serif; background-color: #202329; color: white; text-align: center; }
+    #container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .card { background: #3c3e44; border-radius: 10px; padding: 10px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .card img { width: 100%; border-radius: 8px; }
+    .status { font-weight: bold; color: #b2bec3; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #97ce4c; border: none; border-radius: 5px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Multiverso Rick and Morty</h1>
+  <button onclick="buscarPersonagens()">Explorar Personagens</button>
+  
+  <div id="container"></div>
+
+  <script>
+    function buscarPersonagens() {
+      const container = document.getElementById("container");
+      container.innerHTML = "Carregando..."; // Feedback visual para o usuário
+
+      // 1. Iniciando a requisição (Fetch)
+      fetch("https://rickandmortyapi.com/api/character")
+        .then(resposta => {
+          // 2. Verificação de erro (Tratamento de resposta)
+          if (!resposta.ok) {
+            throw new Error("Não conseguimos acessar o multiverso!");
+          }
+          return resposta.json(); // 3. Convertendo para JSON
+        })
+        .then(dados => {
+          container.innerHTML = ""; // Limpa o carregando
+          
+          // 4. Manipulação dos dados (Criando a lista dinâmica de cards)
+          // A API do Rick and Morty retorna os personagens dentro de 'results'
+          dados.results.forEach(personagem => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+              <img src="${personagem.image}" alt="${personagem.name}">
+              <h3>${personagem.name}</h3>
+              <p class="status">Espécie: ${personagem.species}</p>
+              <p>Status: ${personagem.status}</p>
+            `;
+
+            container.appendChild(card);
+          });
+        })
+        .catch(erro => {
+          // 5. Tratamento de erro final
+          container.innerHTML = <p style="color: red;">Ops! ${erro.message}</p>;
+          console.error("Erro detalhado:", erro);
+        });
+    }
+  </script>
+
+</body>
+</html>
