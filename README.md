@@ -1,44 +1,58 @@
-# Pesquisa_Bootstrap_JS
+# 🏎️ Trabalho Prático: Requisições e APIs com JavaScript
 
-Este projeto foi desenvolvido como parte do trabalho prático de JavaScript sobre requisições HTTP e manipulação de APIs. Utilizamos temas variados para busca e exibição dinâmica de dados.
+Este repositório contém os exemplos práticos desenvolvidos para o trabalho de JavaScript, focando no funcionamento de APIs, requisições HTTP e manipulação dinâmica do DOM.
 
 ## 👥 Integrantes do Grupo
-ARTHUR RIBEIRO DE AZEVEDO 
-CARLOS DANIEL GUALBERTO DOS SANTOS 
-GUSTAVO SANTANA REBOLO 
-HENRY MENEZES CARDOSO 
-LARISSA EDUARDA BRAZ DA SILVA 
-OTHÁVIO KAUAN GOMES CORRÊA 
-RAFAELA MERLOTTO PARRILLA
-
-## 🎯 Objetivo
-Demonstrar o funcionamento do método fetch() .then() e .catch() para realizar requisições assíncronas, tratar as respostas do servidor e manipular o DOM para exibir os dados de forma visual no navegador.
-
-## 🛠️ Tecnologias Utilizadas
-**HTML:** Estrutura da página.
-**JavaScript (ES6):** Lógica de requisição, Promises e manipulação do DOM.
-
-## 📖 Conteúdo Abordado
-
-### 1. O que é uma API e HTTP?
-Explicamos o conceito de interface de programação e como o navegador solicita dados via protocolo HTTP.
-
-### 2. Método fetch(), .then() e .catch()
-Implementamos a estrutura de **Promises** para garantir que o código espere a resposta da API sem travar a aplicação.
-**.then():** Utilizado para converter a resposta bruta em JSON e processar os dados de sucesso.
-**.catch():** Utilizado para capturar e exibir mensagens de erro caso a requisição falhe.
-
-### 3. Manipulação de Dados
-Demonstramos como converter a resposta em um objeto manipulável e como usar o método forEach para criar elementos HTML dinamicamente.
-**Diferencial:** Utilizamos o método .slice(0, 5) para filtrar e exibir apenas os 5 personagens principais da frota.
-
-### 4. Tratamento de Erros
-O código verifica a propriedade response.ok. Caso haja um erro de rede ou URL inválida, o usuário é alertado através de uma mensagem amigável no console ou via alert.
-
-## 🚀 Como rodar o projeto
-1. Baixe o arquivo index.html.
-2. Abra o arquivo em qualquer navegador moderno.
-3. Clique no botão **"Ver Personagens"** para disparar a requisição à API.
+Arthur Ribeiro de Azevedo  
+Carlos Daniel Gualberto dos Santos  
+Gustavo Santana Rebolo  
+Henry Menezes Cardoso  
+Larissa Eduarda Braz da Silva  
+Othávio Kauan Gomes Corrêa  
+Rafaela Merlotto Parrilla  
 
 ---
-Trabalho de JavaScript - 2026
+
+## 🛠️ Conteúdo do Trabalho
+
+O trabalho foi dividido em três demonstrações principais para cobrir todos os requisitos obrigatórios:
+
+### 1. Fazendo requisições com fetch()
+Demonstramos a sintaxe base da API Fetch utilizando a **JSONPlaceholder**. Este exemplo foca na conexão inicial com o servidor.
+**Arquivo:** exemplo-fetch.html
+**API utilizada:** /users
+
+### 2. O Método .then() e manipulação de JSON
+Nesta etapa, focamos no tratamento da "Promessa" (Promise) e na transformação da resposta em dados utilizáveis. Utilizamos o .slice(0, 5) para filtrar os dados recebidos.
+**Arquivo:** exemplo-then.html
+**API utilizada:** /posts
+
+### 3. Exemplo Completo e Tratamento de Erro (.catch())
+Nosso exemplo principal utiliza o tema do filme **Carros**. Ele une todos os conceitos anteriores: busca de dados, conversão, criação de cards visuais (imagem + texto) e o tratamento de erros caso a comunicação falhe.
+**Arquivo:** exemplo-carros.html
+**Destaque:** Uso do bloco .catch() para emitir alertas amigáveis ao usuário em caso de falha.
+
+---
+
+## 🚀 Explicação Técnica dos Comandos
+
+| Comando | Função |
+| :--- | :--- |
+| fetch(url) | Inicia a requisição ao servidor (retorna uma Promise). |
+| .then(res => res.json()) | Converte a resposta bruta do servidor para o formato JSON (objeto JS). |
+| .then(dados => { ... }) | Bloco onde os dados já convertidos são manipulados para aparecer no HTML. |
+| .catch(erro => { ... }) | Captura qualquer falha no processo (erro de rede, URL inválida, etc). |
+| document.createElement() | Cria novos elementos HTML via JavaScript para exibição dinâmica. |
+
+
+
+---
+
+## 🏎️ Como visualizar os exemplos
+1. Clone ou baixe este repositório.
+2. Abra cada arquivo .html em seu navegador.
+3. Clique nos botões de ação para disparar as requisições em tempo real.
+
+---
+**Professor:** Valmir Gomes de Jesus  
+**Disciplina:** Desenvolvimento Web / JavaScript
